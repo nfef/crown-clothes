@@ -8,7 +8,7 @@ import ShopPage from './pages/shoppage/shoppage.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up-page.component'; 
 import Header from './components/header/header.component'; 
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { setCurrentUser } from './redux/user/user-actions';
+import { setCurrentUser } from './redux/user/user.actions';
  
 class App extends React.Component {
 
