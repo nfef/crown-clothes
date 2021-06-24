@@ -4,11 +4,14 @@ import { withRouter } from 'react-router-dom';
 
 import CartItem from '../cart-item/cart-item.component';
 import CustomButton from '../custom-button/custom-button';
-import { selectCartItems } from './../../redux/cart/cart.selectors'
+import { selectCartItems } from './../../redux/cart/cart.selectors';
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
 import './cart-dropdown.style.scss';
 
-const CartDropdown = ({ cartItems, history }) => (
+// connect send dispatch as a property if we do not pass to connect as second parameter
+
+const CartDropdown = ({ cartItems, history, dispatch }) => (
     
     <div className="cart-dropdown">
         <div className="cart-items">
@@ -22,7 +25,13 @@ const CartDropdown = ({ cartItems, history }) => (
                 )
             }
         </div>
-        <CustomButton onClick={() => history.push('/checkout')}>GO TO CHECKOUT</CustomButton>
+        <CustomButton onClick={() => {
+            history.push('/checkout');
+            dispatch(toggleCartHidden());
+            }
+        }
+        >
+            GO TO CHECKOUT</CustomButton>
     </div>
 )
 
