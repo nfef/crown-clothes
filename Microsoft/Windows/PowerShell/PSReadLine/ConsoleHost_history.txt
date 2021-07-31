@@ -1,2 +1,9 @@
 git status
 git add .
+git commit -m "move directory and shop data into its own reducer, created respective selectors and updated corresponding components with redux flow for directory/shop"
+git push origin master
+git pull
+yarn add react-stripe-checkout
+cls
+npm i react-stripe-checkout --save
+git add .
