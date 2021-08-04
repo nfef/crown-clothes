@@ -7,11 +7,13 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shoppage/shoppage.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up-page/sign-in-and-sign-up-page.component'; 
 import CheckoutPage from './pages/checkout/checkout.component';
-
+import { addCollectionAndDocuments, auth, createUserProfileDocument } from './firebase/firebase.utils';
 import Header from './components/header/header.component'; 
 
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectCollectionForPreview } from './redux/shop/shop.selector';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selectors';
  
 class App extends React.Component {
 
@@ -36,8 +38,13 @@ class App extends React.Component {
       }else{
         setCurrentUser(userAuth);
       }
-
+      // fonction send programmatically data to firestore
+      // addCollectionAndDocuments('collections', collectionsArray.map( ({title, items}) => ({title, items}) ) );
   })
+
+
+
+
   }
 
   componentWillUnmount(){
@@ -61,8 +68,10 @@ class App extends React.Component {
 
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionForPreview
+
 })
 
 const mapDispatchToProps = dispatch =>({
